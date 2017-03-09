@@ -8,6 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,11 +20,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class PopularMoviesFragment extends Fragment {
+
+    private final String LOG_TAG = PopularMoviesFragment.class.getSimpleName();
+
+    private MovieAdapter mMovieAdapter;
 
     public PopularMoviesFragment() {
     }
@@ -33,7 +44,14 @@ public class PopularMoviesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
+
+        mMovieAdapter = new MovieAdapter(getActivity(), R.layout.movie_item);
+        // Get a reference to the GridView, and attach this adapter to it.
+        GridView gridView = (GridView) rootView.findViewById(R.id.movies_grid);
+        gridView.setAdapter(mMovieAdapter);
+
+        return rootView;
     }
 
     private void updateMovies() {
@@ -41,7 +59,7 @@ public class PopularMoviesFragment extends Fragment {
         task.execute();
     }
 
-    private class FetchMoviesTask extends AsyncTask<Void, Void, Void> {
+    private class FetchMoviesTask extends AsyncTask<Void, Void, List<Movie>> {
 
         private final String LOG_TAG = FetchMoviesTask.class.getSimpleName();
 
@@ -60,10 +78,30 @@ public class PopularMoviesFragment extends Fragment {
          * @see #publishProgress
          */
         @Override
-        protected Void doInBackground(Void... params) {
-
+        protected List<Movie> doInBackground(Void... params) {
+            List<Movie> movies = null;
             String moviesJsonStr = fetchMoviesData();
-            return null;
+            try {
+                movies = parseMovieData(moviesJsonStr);
+            } catch (JSONException e) {
+                Log.e(LOG_TAG, "Error " + e.getMessage(), e);
+                // If the code didn't successfully get the movie data, there's no point in attemping
+                // to parse it.
+                return null;
+            }
+            return movies;
+        }
+
+        @Override
+        protected void onPostExecute(List<Movie> movies) {
+            if (movies != null) {
+                mMovieAdapter.clear();
+
+                for (Movie movie : movies) {
+                    mMovieAdapter.add(movie); //To accomodate for older versions of Android, otherwise use addAll
+                }
+
+            }
         }
 
         private String fetchMoviesData() {
@@ -76,12 +114,14 @@ public class PopularMoviesFragment extends Fragment {
             String moviesJsonStr = null;
 
             try {
+                final String SORT_BY = "sort_by";
                 final String API_KEY_PARAM = "api_key";
 
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("https")
                         .authority("api.themoviedb.org")
-                        .path("3/movie/popular")
+                        .path("3/discover/movie")
+                        .appendQueryParameter(SORT_BY, "popularity.desc")
                         .appendQueryParameter(API_KEY_PARAM, BuildConfig.THE_MOVIE_DB_API_KEY);
 
                 URL url = new URL(builder.build().toString());
@@ -132,7 +172,43 @@ public class PopularMoviesFragment extends Fragment {
             }
             return moviesJsonStr;
         }
+
+        /**
+         * Refer https://developers.themoviedb.org/3/discover to view JSON
+         * format of the data
+         *
+         * @param moviesJsonStr
+         * @return
+         * @throws JSONException
+         */
+        private List<Movie> parseMovieData(String moviesJsonStr) throws JSONException {
+
+            List<Movie> movies = new ArrayList<Movie>();
+
+            JSONObject moviesJson = new JSONObject(moviesJsonStr);
+            JSONArray results = moviesJson.getJSONArray("results");
+
+            if (results != null) {
+                int length = results.length();
+                for (int i = 0; i < length; i++) {
+                    JSONObject movieJson = results.getJSONObject(i);
+
+                    if (movieJson != null) {
+
+                        int id = movieJson.getInt("id");
+                        String posterPath = movieJson.getString("poster_path");
+                        String originalTitle = movieJson.getString("original_title");
+                        String overview = movieJson.getString("overview");
+                        String releaseDt = movieJson.getString("release_date");
+                        int voteAvg = movieJson.getInt("id");
+
+                        Movie movie = new Movie(id, posterPath, originalTitle, overview, releaseDt, voteAvg);
+                        Log.v(LOG_TAG, movie.toString());
+                        movies.add(movie);
+                    }
+                }
+            }
+            return movies;
+        }
     }
-
-
 }
