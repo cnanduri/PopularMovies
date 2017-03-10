@@ -1,9 +1,11 @@
 package app.udacity.android.cn.popularmovies;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,8 +26,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.id;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -72,10 +72,18 @@ public class PopularMoviesFragment extends Fragment {
 
     private void updateMovies() {
         FetchMoviesTask task = new FetchMoviesTask();
-        task.execute();
+        //Retrieve Shared Preferences to get the user set location from settings
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String sortOrder = getString(R.string.pref_sort_order_value_popular);
+
+        if (settings != null) {
+            sortOrder = settings.getString(getString(R.string.pref_sort_order_key), sortOrder);
+        }
+
+        task.execute(sortOrder);
     }
 
-    private class FetchMoviesTask extends AsyncTask<Void, Void, List<Movie>> {
+    private class FetchMoviesTask extends AsyncTask<String, Void, List<Movie>> {
 
         private final String LOG_TAG = FetchMoviesTask.class.getSimpleName();
 
@@ -94,9 +102,9 @@ public class PopularMoviesFragment extends Fragment {
          * @see #publishProgress
          */
         @Override
-        protected List<Movie> doInBackground(Void... params) {
+        protected List<Movie> doInBackground(String... params) {
             List<Movie> movies = null;
-            String moviesJsonStr = fetchMoviesData();
+            String moviesJsonStr = fetchMoviesData(params);
             try {
                 movies = parseMovieData(moviesJsonStr);
             } catch (JSONException e) {
@@ -120,7 +128,7 @@ public class PopularMoviesFragment extends Fragment {
             }
         }
 
-        private String fetchMoviesData() {
+        private String fetchMoviesData(String... params) {
             // These two need to be declared outside the try/catch
             // so that they can be closed in the finally block.
             HttpURLConnection urlConnection = null;
@@ -137,7 +145,7 @@ public class PopularMoviesFragment extends Fragment {
                 builder.scheme("https")
                         .authority("api.themoviedb.org")
                         .path("3/discover/movie")
-                        .appendQueryParameter(SORT_BY, "popularity.desc")
+                        .appendQueryParameter(SORT_BY, params[0])
                         .appendQueryParameter(API_KEY_PARAM, BuildConfig.THE_MOVIE_DB_API_KEY);
 
                 URL url = new URL(builder.build().toString());

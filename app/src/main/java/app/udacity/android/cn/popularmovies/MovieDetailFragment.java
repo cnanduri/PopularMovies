@@ -34,6 +34,7 @@ public class MovieDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Intent intent = getActivity().getIntent();
         mMovie = intent.getParcelableExtra(Constants.MOVIE);
+        setHasOptionsMenu(true);
     }
 
     @Override
