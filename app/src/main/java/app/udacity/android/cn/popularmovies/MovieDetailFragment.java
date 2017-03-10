@@ -69,13 +69,17 @@ public class MovieDetailFragment extends Fragment {
         TextView releaseDtTextView = (TextView) rootView.findViewById(R.id.movie_release_date);
         releaseDtTextView.setText(releaseDtStr);
 
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.movie_image);
-        String path = new StringBuffer(getString(R.string.the_movie_db_base_url))
-                .append(getString(R.string.movie_image_size))
-                .append(mMovie.getPosterPath()).toString();
-        Picasso.with(getActivity())
-                .load(path)
-                .into(imageView);
+        if (NetworkCheck.isOnline(getContext())) {
+            ImageView imageView = (ImageView) rootView.findViewById(R.id.movie_image);
+            String path = new StringBuffer(getString(R.string.the_movie_db_base_url))
+                    .append(getString(R.string.movie_image_size))
+                    .append(mMovie.getPosterPath()).toString();
+            Picasso.with(getActivity())
+                    .load(path)
+                    .into(imageView);
+        } else {
+            Log.e(LOG_TAG, "No Network connection.");
+        }
 
         return rootView;
     }
