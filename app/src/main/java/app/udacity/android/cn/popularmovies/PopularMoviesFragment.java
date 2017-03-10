@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,7 +40,27 @@ public class PopularMoviesFragment extends Fragment {
 
     private MovieAdapter mMovieAdapter;
 
+    private ArrayList<Movie> mMovies;
+
     public PopularMoviesFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(savedInstanceState == null || !savedInstanceState.containsKey(Constants.MOVIES)) {
+            mMovies = new ArrayList<Movie>();
+        }
+        else {
+            Log.d(LOG_TAG, "Retrieving movies list from savedInstancesStaate...");
+            mMovies = savedInstanceState.getParcelableArrayList(Constants.MOVIES);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList(Constants.MOVIES, mMovies);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -54,7 +75,7 @@ public class PopularMoviesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
 
-        mMovieAdapter = new MovieAdapter(getActivity(), R.layout.movie_item);
+        mMovieAdapter = new MovieAdapter(getActivity(), mMovies);
         // Get a reference to the GridView, and attach this adapter to it.
         GridView gridView = (GridView) rootView.findViewById(R.id.movies_grid);
         gridView.setAdapter(mMovieAdapter);
@@ -126,7 +147,7 @@ public class PopularMoviesFragment extends Fragment {
                 mMovieAdapter.clear();
 
                 for (Movie movie : movies) {
-                    mMovieAdapter.add(movie); //To accomodate for older versions of Android, otherwise use addAll
+                    mMovies.add(movie);//To accomodate for older versions of Android, otherwise use addAll
                 }
 
             }

@@ -7,6 +7,7 @@ package app.udacity.android.cn.popularmovies;
 public class Constants {
 
     public static final String MOVIE = "movie";
+    public static final String MOVIES = "movies";
 
     public static final String BASE_URL = "http://image.tmdb.org/t/p/";
     public static final String IMAGE_SIZE = "w185";
