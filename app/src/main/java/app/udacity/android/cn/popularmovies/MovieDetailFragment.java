@@ -69,7 +69,7 @@ public class MovieDetailFragment extends Fragment {
         TextView releaseDtTextView = (TextView) rootView.findViewById(R.id.movie_release_date);
         releaseDtTextView.setText(releaseDtStr);
 
-        ImageView imageView  = (ImageView) rootView.findViewById(R.id.movie_image);
+        ImageView imageView = (ImageView) rootView.findViewById(R.id.movie_image);
         String path = new StringBuffer(Constants.BASE_URL).append(Constants.IMAGE_SIZE)
                 .append(mMovie.getPosterPath()).toString();
         Picasso.with(getActivity())
@@ -79,42 +79,3 @@ public class MovieDetailFragment extends Fragment {
         return rootView;
     }
 }
-/*
-
-
-<!--
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="app.udacity.android.cn.popularmovies.MovieDetailActivity"
-        tools:ignore="MergeRootFrame">
-
-<TextView
-        android:id="@+id/movie_original_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-<TextView
-        android:id="@+id/movie_overview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-<TextView
-        android:id="@+id/movie_vote_average"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-<TextView
-        android:id="@+id/movie_release_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-</LinearLayout>
-        -->
-*/

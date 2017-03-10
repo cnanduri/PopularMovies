@@ -1,7 +1,10 @@
 package app.udacity.android.cn.popularmovies;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,7 +45,8 @@ public class PopularMoviesFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        updateMovies();
+        HostAvailabilityTask task = new HostAvailabilityTask();
+        task.execute();
     }
 
     @Override
@@ -232,6 +236,48 @@ public class PopularMoviesFragment extends Fragment {
                 }
             }
             return movies;
+        }
+    }
+
+    private class HostAvailabilityTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final String LOG_TAG = HostAvailabilityTask.class.getSimpleName();
+
+        public boolean isOnline() {
+            ConnectivityManager cm =
+                    (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            return netInfo != null && netInfo.isConnectedOrConnecting();
+        }
+
+
+        /**
+         * Override this method to perform a computation on a background thread. The
+         * specified parameters are the parameters passed to {@link #execute}
+         * by the caller of this task.
+         * <p>
+         * This method can call {@link #publishProgress} to publish updates
+         * on the UI thread.
+         *
+         * @param params The parameters of the task.
+         * @return A result, defined by the subclass of this task.
+         * @see #onPreExecute()
+         * @see #onPostExecute
+         * @see #publishProgress
+         */
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            return isOnline();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean isOnline) {
+            if (!isOnline) {
+                Log.e(LOG_TAG, "No Network connection.");
+            } else {
+                Log.d(LOG_TAG, "Network connection available.");
+                updateMovies();
+            }
         }
     }
 }
