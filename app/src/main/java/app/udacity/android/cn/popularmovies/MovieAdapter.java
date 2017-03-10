@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,6 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         String path = new StringBuffer(Constants.BASE_URL).append(Constants.IMAGE_SIZE)
                 .append(movie.getPosterPath()).toString();
-        Log.v(LOG_TAG, "Poster Path : " + path);
 
         // Adapters recycle views to AdapterViews.
         // If this is a new View object we're getting, then inflate the layout.

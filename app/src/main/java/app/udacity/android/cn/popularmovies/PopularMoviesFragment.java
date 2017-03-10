@@ -64,7 +64,7 @@ public class PopularMoviesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Retrieve movie object at the position clicked
                 Movie movie = mMovieAdapter.getItem(position);
-                Log.v(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
+                Log.d(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
                 Intent intent = new Intent(getActivity(), MovieDetailActivity.class)
                         .putExtra(Constants.MOVIE, movie); //Pass the Movie object at the position clicked
                 startActivity(intent);
@@ -154,7 +154,6 @@ public class PopularMoviesFragment extends Fragment {
 
                 URL url = new URL(builder.build().toString());
 
-                Log.v(LOG_TAG, "Built URI : " + url.toString());
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
@@ -182,7 +181,6 @@ public class PopularMoviesFragment extends Fragment {
                     return null;
                 }
                 moviesJsonStr = buffer.toString();
-                Log.v(LOG_TAG, "Movies JSON String : " + moviesJsonStr);
             } catch (IOException e) {
                 Log.e(LOG_TAG, e.getMessage(), e);
                 e.printStackTrace();
@@ -230,7 +228,6 @@ public class PopularMoviesFragment extends Fragment {
                         int voteAvg = movieJson.getInt("vote_average");
 
                         Movie movie = new Movie(posterPath, originalTitle, overview, releaseDt, voteAvg);
-                        Log.v(LOG_TAG, movie.toString());
                         movies.add(movie);
                     }
                 }
