@@ -163,7 +163,6 @@ public class PopularMoviesFragment extends Fragment {
             String moviesJsonStr = null;
 
             try {
-                final String SORT_BY = "sort_by";
                 final String API_KEY_PARAM = "api_key";
 
                 Uri.Builder builder = new Uri.Builder();
