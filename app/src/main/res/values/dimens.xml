@@ -4,5 +4,14 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="activity_movie_detail_padding">10dp</dimen>
+    <!-- Padding used between views in general-->
+    <dimen name="movie_detail_padding">10dp</dimen>
+    <!-- Movie Image width retrieved from the Movies DB-->
+    <dimen name="movie_image_width">200dp</dimen>
+    <!-- Movie Image height retrieved from the Movies DB-->
+    <dimen name="movie_image_height">200dp</dimen>
+    <!-- Default spacing for Grid View (Both Horizontal and Vertical)-->
+    <dimen name="grid_view_spacing">10dp</dimen>
+    <!-- Column Width for Grid View-->
+    <dimen name="grid_view_column_width">90dp</dimen>
 </resources>
