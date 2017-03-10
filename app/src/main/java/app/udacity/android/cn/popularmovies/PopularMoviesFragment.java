@@ -48,18 +48,18 @@ public class PopularMoviesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState == null || !savedInstanceState.containsKey(Constants.MOVIES)) {
+        if(savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.movies))) {
             mMovies = new ArrayList<Movie>();
         }
         else {
             Log.d(LOG_TAG, "Retrieving movies list from savedInstancesStaate...");
-            mMovies = savedInstanceState.getParcelableArrayList(Constants.MOVIES);
+            mMovies = savedInstanceState.getParcelableArrayList(getString(R.string.movies));
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(Constants.MOVIES, mMovies);
+        outState.putParcelableArrayList(getString(R.string.movies), mMovies);
         super.onSaveInstanceState(outState);
     }
 
@@ -87,7 +87,7 @@ public class PopularMoviesFragment extends Fragment {
                 Movie movie = mMovieAdapter.getItem(position);
                 Log.d(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
                 Intent intent = new Intent(getActivity(), MovieDetailActivity.class)
-                        .putExtra(Constants.MOVIE, movie); //Pass the Movie object at the position clicked
+                        .putExtra(getString(R.string.movie), movie); //Pass the Movie object at the position clicked
                 startActivity(intent);
             }
         });

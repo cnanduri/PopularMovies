@@ -86,4 +86,19 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
 
+
+    <!-- Base URL required for connecting to the movies DB -->
+    <string name="the_movie_db_base_url" translatable="false">http://image.tmdb.org/t/p/</string>
+
+    <!-- Base URL required for connecting to the movies DB -->
+    <string name="movie_image_size" translatable="false">w185</string>
+
+    <!-- Date Format in which data is returned from the movies DB-->
+    <string name="movie_date_format" translatable="false">yyyy-MM-dd</string>
+
+    <!-- Keys for storing Movie object and list of Movie objects-->
+    <string name="movie" translatable="false">movie</string>
+    <string name="movies" translatable="false">movies</string>
+
+
 </resources>

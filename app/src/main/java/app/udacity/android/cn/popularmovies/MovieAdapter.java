@@ -31,11 +31,12 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
 
-
+        Context context = getContext();
         //Fetch the movie object from the adapter
         Movie movie = getItem(position);
 
-        String path = new StringBuffer(Constants.BASE_URL).append(Constants.IMAGE_SIZE)
+        String path = new StringBuffer(context.getString(R.string.the_movie_db_base_url))
+                .append(context.getString(R.string.movie_image_size))
                 .append(movie.getPosterPath()).toString();
 
         // Adapters recycle views to AdapterViews.

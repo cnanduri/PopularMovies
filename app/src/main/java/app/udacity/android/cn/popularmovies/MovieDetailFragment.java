@@ -33,7 +33,7 @@ public class MovieDetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getActivity().getIntent();
-        mMovie = intent.getParcelableExtra(Constants.MOVIE);
+        mMovie = intent.getParcelableExtra(getString(R.string.movie));
         setHasOptionsMenu(true);
     }
 
@@ -47,7 +47,7 @@ public class MovieDetailFragment extends Fragment {
         int voteAvg = mMovie.getVoteAvg();
         String releaseDtStr = mMovie.getReleaseDt();
 
-        SimpleDateFormat formatter = new SimpleDateFormat(Constants.ISO_DATE_FORMAT);
+        SimpleDateFormat formatter = new SimpleDateFormat(getString(R.string.movie_date_format));
         try {
             Date releaseDt = formatter.parse(releaseDtStr);
             formatter = new SimpleDateFormat("MMMM dd, yyyy");
@@ -70,7 +70,8 @@ public class MovieDetailFragment extends Fragment {
         releaseDtTextView.setText(releaseDtStr);
 
         ImageView imageView = (ImageView) rootView.findViewById(R.id.movie_image);
-        String path = new StringBuffer(Constants.BASE_URL).append(Constants.IMAGE_SIZE)
+        String path = new StringBuffer(getString(R.string.the_movie_db_base_url))
+                .append(getString(R.string.movie_image_size))
                 .append(mMovie.getPosterPath()).toString();
         Picasso.with(getActivity())
                 .load(path)
