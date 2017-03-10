@@ -11,7 +11,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Movie implements Parcelable {
 
-    private int id;
     private String posterPath;
     private String originalTitle;
     private String overview;
@@ -19,9 +18,8 @@ public class Movie implements Parcelable {
     private int voteAvg;
 
 
-    public Movie(int id, String posterPath, String originalTitle,
+    public Movie(String posterPath, String originalTitle,
                  String overview, String releaseDt, int voteAvg) {
-        this.id = id;
         this.posterPath = posterPath;
         this.originalTitle = originalTitle;
         this.overview = overview;
@@ -31,7 +29,6 @@ public class Movie implements Parcelable {
 
 
     protected Movie(Parcel in) {
-        this.id = in.readInt();
         this.posterPath = in.readString();
         this.originalTitle = in.readString();
         this.overview = in.readString();
@@ -77,7 +74,6 @@ public class Movie implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
         dest.writeString(posterPath);
         dest.writeString(originalTitle);
         dest.writeString(overview);
@@ -88,10 +84,6 @@ public class Movie implements Parcelable {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getPosterPath() {
@@ -112,10 +104,6 @@ public class Movie implements Parcelable {
 
     public int getVoteAvg() {
         return voteAvg;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setPosterPath(String posterPath) {

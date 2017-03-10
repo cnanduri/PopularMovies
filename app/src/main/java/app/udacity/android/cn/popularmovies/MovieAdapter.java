@@ -30,13 +30,12 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        final String BASE_URL = "http://image.tmdb.org/t/p/";
-        final String IMAGE_SIZE = "w185";
+
 
         //Fetch the movie object from the adapter
         Movie movie = getItem(position);
 
-        String path = new StringBuffer(BASE_URL).append(IMAGE_SIZE)
+        String path = new StringBuffer(Constants.BASE_URL).append(Constants.IMAGE_SIZE)
                 .append(movie.getPosterPath()).toString();
         Log.v(LOG_TAG, "Poster Path : " + path);
 

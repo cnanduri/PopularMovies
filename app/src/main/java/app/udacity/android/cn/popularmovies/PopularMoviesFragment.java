@@ -1,5 +1,6 @@
 package app.udacity.android.cn.popularmovies;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import org.json.JSONArray;
@@ -22,6 +24,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.id;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -50,6 +54,18 @@ public class PopularMoviesFragment extends Fragment {
         // Get a reference to the GridView, and attach this adapter to it.
         GridView gridView = (GridView) rootView.findViewById(R.id.movies_grid);
         gridView.setAdapter(mMovieAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Retrieve movie object at the position clicked
+                Movie movie = mMovieAdapter.getItem(position);
+                Log.v(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
+                Intent intent = new Intent(getActivity(), MovieDetailActivity.class)
+                        .putExtra(Constants.MOVIE, movie); //Pass the Movie object at the position clicked
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
@@ -195,14 +211,13 @@ public class PopularMoviesFragment extends Fragment {
 
                     if (movieJson != null) {
 
-                        int id = movieJson.getInt("id");
                         String posterPath = movieJson.getString("poster_path");
                         String originalTitle = movieJson.getString("original_title");
                         String overview = movieJson.getString("overview");
                         String releaseDt = movieJson.getString("release_date");
-                        int voteAvg = movieJson.getInt("id");
+                        int voteAvg = movieJson.getInt("vote_average");
 
-                        Movie movie = new Movie(id, posterPath, originalTitle, overview, releaseDt, voteAvg);
+                        Movie movie = new Movie(posterPath, originalTitle, overview, releaseDt, voteAvg);
                         Log.v(LOG_TAG, movie.toString());
                         movies.add(movie);
                     }
