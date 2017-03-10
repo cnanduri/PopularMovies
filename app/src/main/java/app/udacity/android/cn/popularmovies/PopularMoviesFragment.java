@@ -169,9 +169,14 @@ public class PopularMoviesFragment extends Fragment {
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("https")
                         .authority("api.themoviedb.org")
-                        .path("3/discover/movie")
-                        .appendQueryParameter(SORT_BY, params[0])
                         .appendQueryParameter(API_KEY_PARAM, BuildConfig.THE_MOVIE_DB_API_KEY);
+
+                String sortOrder = params[0];
+                if (getString(R.string.pref_sort_order_value_popular).equalsIgnoreCase(sortOrder)) {
+                    builder.path("3/movie/popular");
+                } else {
+                    builder.path("3/movie/top_rated");
+                }
 
                 URL url = new URL(builder.build().toString());
 
