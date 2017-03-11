@@ -19,9 +19,8 @@ import java.util.ArrayList;
  * Custom Adapter to convert a list of Movie objects into a view
  */
 
+@SuppressWarnings("WeakerAccess")
 public class MovieAdapter extends ArrayAdapter<Movie> {
-
-    private static final String LOG_TAG = MovieAdapter.class.getSimpleName();
 
     public MovieAdapter(@NonNull Context context, ArrayList<Movie> movies) {
         super(context, 0, movies);

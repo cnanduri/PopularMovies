@@ -18,6 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  For more information, refer https://developers.themoviedb.org/3/getting-started/introduction
  */
 
+@SuppressWarnings("CanBeFinal")
 public class Movie implements Parcelable {
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -48,7 +49,7 @@ public class Movie implements Parcelable {
     }
 
 
-    protected Movie(Parcel in) {
+    private Movie(Parcel in) {
         this.posterPath = in.readString();
         this.originalTitle = in.readString();
         this.overview = in.readString();
@@ -97,39 +98,20 @@ public class Movie implements Parcelable {
         return posterPath;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
     public String getOriginalTitle() {
         return originalTitle;
-    }
-
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
     }
 
     public String getOverview() {
         return overview;
     }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
-
     public String getReleaseDt() {
         return releaseDt;
-    }
-
-    public void setReleaseDt(String releaseDt) {
-        this.releaseDt = releaseDt;
     }
 
     public int getVoteAvg() {
         return voteAvg;
     }
 
-    public void setVoteAvg(int voteAvg) {
-        this.voteAvg = voteAvg;
-    }
 }

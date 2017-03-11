@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
  * Checks if the Application has access to the network/internet
  */
 
+@SuppressWarnings("WeakerAccess")
 public class NetworkCheck {
 
     public static boolean isOnline(Context context) {
