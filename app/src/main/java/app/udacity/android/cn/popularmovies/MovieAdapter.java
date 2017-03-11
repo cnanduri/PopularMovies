@@ -32,12 +32,6 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
 
         Context context = getContext();
-        //Fetch the movie object from the adapter
-        Movie movie = getItem(position);
-
-        String path = new StringBuffer(context.getString(R.string.the_movie_db_base_url))
-                .append(context.getString(R.string.movie_image_size))
-                .append(movie.getPosterPath()).toString();
 
         // Adapters recycle views to AdapterViews.
         // If this is a new View object we're getting, then inflate the layout.
@@ -48,13 +42,22 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                     R.layout.movie_item, parent, false);
         }
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
-        Picasso.with(getContext())
-                .load(path)
-                .into(imageView);
+        //Fetch the movie object from the adapter
+        Movie movie = getItem(position);
 
-        TextView textView = (TextView) convertView.findViewById(R.id.movie_title);
-        textView.setText(movie.getOriginalTitle());
+        if (movie != null) {
+            String path = new StringBuffer(context.getString(R.string.the_movie_db_base_url))
+                    .append(context.getString(R.string.movie_image_size))
+                    .append(movie.getPosterPath()).toString();
+
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
+            Picasso.with(getContext())
+                    .load(path)
+                    .into(imageView);
+
+            TextView textView = (TextView) convertView.findViewById(R.id.movie_title);
+            textView.setText(movie.getOriginalTitle());
+        }
 
         return convertView;
     }

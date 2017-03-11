@@ -85,10 +85,12 @@ public class PopularMoviesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Retrieve movie object at the position clicked
                 Movie movie = mMovieAdapter.getItem(position);
-                Log.d(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
-                Intent intent = new Intent(getActivity(), MovieDetailActivity.class)
-                        .putExtra(getString(R.string.movie), movie); //Pass the Movie object at the position clicked
-                startActivity(intent);
+                if (movie != null) {
+                    Log.d(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
+                    Intent intent = new Intent(getActivity(), MovieDetailActivity.class)
+                            .putExtra(getString(R.string.movie), movie); //Pass the Movie object at the position clicked
+                    startActivity(intent);
+                }
             }
         });
 
@@ -128,7 +130,7 @@ public class PopularMoviesFragment extends Fragment {
          */
         @Override
         protected List<Movie> doInBackground(String... params) {
-            List<Movie> movies = null;
+            List<Movie> movies;
             String moviesJsonStr = fetchMoviesData(params);
             try {
                 movies = parseMovieData(moviesJsonStr);
