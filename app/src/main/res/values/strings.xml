@@ -61,6 +61,8 @@
 
     <!-- Date Format in which data is returned from the movies DB-->
     <string name="movie_date_format" translatable="false">yyyy-MM-dd</string>
+    <!-- Date Format in which date is supposed to be displayed on the UI-->
+    <string name="movie_date_format_ui" translatable="false">MMMM dd, yyyy</string>
 
     <!-- Keys for storing Movie object and list of Movie objects-->
     <string name="movie" translatable="false">movie</string>

@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -47,10 +48,12 @@ public class MovieDetailFragment extends Fragment {
         int voteAvg = mMovie.getVoteAvg();
         String releaseDtStr = mMovie.getReleaseDt();
 
-        SimpleDateFormat formatter = new SimpleDateFormat(getString(R.string.movie_date_format));
+        //Deprecated, but needed to support older versions
+        @SuppressWarnings("deprecation") Locale locale = getResources().getConfiguration().locale;
+        SimpleDateFormat formatter = new SimpleDateFormat(getString(R.string.movie_date_format), locale);
         try {
             Date releaseDt = formatter.parse(releaseDtStr);
-            formatter = new SimpleDateFormat("MMMM dd, yyyy");
+            formatter = new SimpleDateFormat(getString(R.string.movie_date_format_ui), locale);
             releaseDtStr = formatter.format(releaseDt);
         } catch (ParseException e) {
             Log.e(LOG_TAG, "Error occurred while parsing date : " + e.getMessage(), e);
