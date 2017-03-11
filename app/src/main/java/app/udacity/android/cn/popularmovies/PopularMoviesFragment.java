@@ -46,7 +46,7 @@ public class PopularMoviesFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.movies))) {
-            mMovies = new ArrayList<Movie>();
+            mMovies = new ArrayList<>();
         }
         else {
             Log.d(LOG_TAG, "Retrieving movies list from savedInstancesState...");
@@ -188,7 +188,7 @@ public class PopularMoviesFragment extends Fragment {
 
                 // Read the input stream into a String
                 InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
+                StringBuilder buffer = new StringBuilder();
                 if (inputStream == null) {
                     // Nothing to do.
                     return null;
@@ -235,7 +235,7 @@ public class PopularMoviesFragment extends Fragment {
          */
         private List<Movie> parseMovieData(String moviesJsonStr) throws JSONException {
 
-            List<Movie> movies = new ArrayList<Movie>();
+            List<Movie> movies = new ArrayList<>();
 
             JSONObject moviesJson = new JSONObject(moviesJsonStr);
             JSONArray results = moviesJson.getJSONArray("results");
