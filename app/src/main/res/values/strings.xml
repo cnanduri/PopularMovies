@@ -100,5 +100,8 @@
     <string name="movie" translatable="false">movie</string>
     <string name="movies" translatable="false">movies</string>
 
+    <!-- Content Description for Movie Image View -->
+    <string name="movie_image_view_content_desc">Movie Image</string>
+
 
 </resources>

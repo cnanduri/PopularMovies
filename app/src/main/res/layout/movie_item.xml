@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
     <ImageView
+        android:contentDescription="@string/movie_image_view_content_desc"
         android:layout_width="@dimen/movie_image_width"
         android:layout_height="@dimen/movie_image_height"
         android:scaleType="centerCrop"

@@ -47,6 +47,7 @@
 
             <ImageView
                 android:id="@+id/movie_image"
+                android:contentDescription="@string/movie_image_view_content_desc"
                 android:layout_width="@dimen/movie_image_width"
                 android:layout_height="@dimen/movie_image_height"
                 android:scaleType="centerCrop" />
