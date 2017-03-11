@@ -46,9 +46,9 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         Movie movie = getItem(position);
 
         if (movie != null) {
-            String path = new StringBuffer(context.getString(R.string.the_movie_db_base_url))
-                    .append(context.getString(R.string.movie_image_size))
-                    .append(movie.getPosterPath()).toString();
+            String path = context.getString(R.string.the_movie_db_base_url) +
+                    context.getString(R.string.movie_image_size) +
+                    movie.getPosterPath();
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
             Picasso.with(getContext())

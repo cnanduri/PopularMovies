@@ -71,9 +71,9 @@ public class MovieDetailFragment extends Fragment {
 
         if (NetworkCheck.isOnline(getContext())) {
             ImageView imageView = (ImageView) rootView.findViewById(R.id.movie_image);
-            String path = new StringBuffer(getString(R.string.the_movie_db_base_url))
-                    .append(getString(R.string.movie_image_size))
-                    .append(mMovie.getPosterPath()).toString();
+            String path = getString(R.string.the_movie_db_base_url) +
+                    getString(R.string.movie_image_size) +
+                    mMovie.getPosterPath();
             Picasso.with(getActivity())
                     .load(path)
                     .into(imageView);
