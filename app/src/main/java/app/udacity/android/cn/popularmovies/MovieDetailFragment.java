@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.parceler.Parcels;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,7 +36,7 @@ public class MovieDetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getActivity().getIntent();
-        mMovie = intent.getParcelableExtra(getString(R.string.movie));
+        mMovie = Parcels.unwrap(intent.getParcelableExtra(getString(R.string.movie)));
         setHasOptionsMenu(true);
     }
 

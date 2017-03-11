@@ -18,6 +18,7 @@ import android.widget.GridView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,13 +51,13 @@ public class PopularMoviesFragment extends Fragment {
         }
         else {
             Log.d(LOG_TAG, "Retrieving movies list from savedInstancesState...");
-            mMovies = savedInstanceState.getParcelableArrayList(getString(R.string.movies));
+            mMovies = Parcels.unwrap(savedInstanceState.getParcelable(getString(R.string.movies)));
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(getString(R.string.movies), mMovies);
+        outState.putParcelable(getString(R.string.movies), Parcels.wrap(mMovies));
         super.onSaveInstanceState(outState);
     }
 
@@ -88,7 +89,7 @@ public class PopularMoviesFragment extends Fragment {
                 if (movie != null) {
                     Log.d(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
                     Intent intent = new Intent(getActivity(), MovieDetailActivity.class)
-                            .putExtra(getString(R.string.movie), movie); //Pass the Movie object at the position clicked
+                            .putExtra(getString(R.string.movie), Parcels.wrap(movie)); //Pass the Movie object at the position clicked
                     startActivity(intent);
                 }
             }

@@ -1,9 +1,7 @@
 package app.udacity.android.cn.popularmovies;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.parceler.ParcelConstructor;
 
 /**
  * Created by Chaitanya on 3/9/2017.
@@ -18,27 +16,17 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  For more information, refer https://developers.themoviedb.org/3/getting-started/introduction
  */
 
+@org.parceler.Parcel
 @SuppressWarnings("CanBeFinal")
-public class Movie implements Parcelable {
+public class Movie {
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
-        }
+    String posterPath;
+    String originalTitle;
+    String overview;
+    String releaseDt;
+    int voteAvg;
 
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
-    private String posterPath;
-    private String originalTitle;
-    private String overview;
-    private String releaseDt;
-    private int voteAvg;
-
-
+    @ParcelConstructor
     public Movie(String posterPath, String originalTitle,
                  String overview, String releaseDt, int voteAvg) {
         this.posterPath = posterPath;
@@ -46,52 +34,6 @@ public class Movie implements Parcelable {
         this.overview = overview;
         this.releaseDt = releaseDt;
         this.voteAvg = voteAvg;
-    }
-
-
-    private Movie(Parcel in) {
-        this.posterPath = in.readString();
-        this.originalTitle = in.readString();
-        this.overview = in.readString();
-        this.releaseDt = in.readString();
-        this.voteAvg = in.readInt();
-    }
-
-    /**
-     * Describe the kinds of special objects contained in this Parcelable
-     * instance's marshaled representation. For example, if the object will
-     * include a file descriptor in the output of {@link #writeToParcel(Parcel, int)},
-     * the return value of this method must include the
-     * {@link #CONTENTS_FILE_DESCRIPTOR} bit.
-     *
-     * @return a bitmask indicating the set of special object types marshaled
-     * by this Parcelable object instance.
-     * @see #CONTENTS_FILE_DESCRIPTOR
-     */
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    /**
-     * Flatten this object in to a Parcel.
-     *
-     * @param dest  The Parcel in which the object should be written.
-     * @param flags Additional flags about how the object should be written.
-     *              May be 0 or {@link #PARCELABLE_WRITE_RETURN_VALUE}.
-     */
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(posterPath);
-        dest.writeString(originalTitle);
-        dest.writeString(overview);
-        dest.writeString(releaseDt);
-        dest.writeInt(voteAvg);
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     public String getPosterPath() {
@@ -112,6 +54,11 @@ public class Movie implements Parcelable {
 
     public int getVoteAvg() {
         return voteAvg;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 
 }
