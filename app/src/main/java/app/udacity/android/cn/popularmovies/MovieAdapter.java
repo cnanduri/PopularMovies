@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Chaitanya on 3/9/2017.
+ * Custom Adapter to convert a list of Movie objects into a view
  */
 
 public class MovieAdapter extends ArrayAdapter<Movie> {

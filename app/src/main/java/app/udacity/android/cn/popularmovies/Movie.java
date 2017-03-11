@@ -7,10 +7,30 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Created by Chaitanya on 3/9/2017.
+ * Holds the following information:
+ *  1. Poster path --> This is required if we need the poster of the
+ *      movie we are displaying
+ *  2. Original Title
+ *  3. Overview
+ *  4. Release Date
+ *  5. Vote Average
+ *
+ *  For more information, refer https://developers.themoviedb.org/3/getting-started/introduction
  */
 
 public class Movie implements Parcelable {
 
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
     private String posterPath;
     private String originalTitle;
     private String overview;
@@ -35,19 +55,6 @@ public class Movie implements Parcelable {
         this.releaseDt = in.readString();
         this.voteAvg = in.readInt();
     }
-
-
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
-        }
-
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
 
     /**
      * Describe the kinds of special objects contained in this Parcelable
@@ -90,36 +97,36 @@ public class Movie implements Parcelable {
         return posterPath;
     }
 
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public String getReleaseDt() {
-        return releaseDt;
-    }
-
-    public int getVoteAvg() {
-        return voteAvg;
-    }
-
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
     }
 
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
     }
 
+    public String getOverview() {
+        return overview;
+    }
+
     public void setOverview(String overview) {
         this.overview = overview;
     }
 
+    public String getReleaseDt() {
+        return releaseDt;
+    }
+
     public void setReleaseDt(String releaseDt) {
         this.releaseDt = releaseDt;
+    }
+
+    public int getVoteAvg() {
+        return voteAvg;
     }
 
     public void setVoteAvg(int voteAvg) {

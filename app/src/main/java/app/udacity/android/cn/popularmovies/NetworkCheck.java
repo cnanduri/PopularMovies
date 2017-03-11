@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 
 /**
  * Created by Chaitanya on 3/10/2017.
+ * Checks if the Application has access to the network/internet
  */
 
 public class NetworkCheck {
