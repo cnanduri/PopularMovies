@@ -112,6 +112,7 @@ fabric.properties
 # .idea/misc.xml
 # *.ipr
 # .idea/dictionaries
+# .idea/inspectionProfiles
 
 ### Java ###
 # Compiled class file
@@ -157,3 +158,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/android,windows,java,intellij
+.idea/dictionaries/
+.idea/inspectionProfiles/
+.idea/shelf/
+app/libs/
