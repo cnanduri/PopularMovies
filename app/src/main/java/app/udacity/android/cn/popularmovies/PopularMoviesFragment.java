@@ -228,9 +228,8 @@ public class PopularMoviesFragment extends Fragment {
          * Refer https://developers.themoviedb.org/3/discover to view JSON
          * format of the data
          *
-         * @param moviesJsonStr
-         * @return
-         * @throws JSONException
+         * @param moviesJsonStr JSON string returned from API call
+         * @return List of Movie objects constructed from JSON
          */
         private List<Movie> parseMovieData(String moviesJsonStr) throws JSONException {
 
