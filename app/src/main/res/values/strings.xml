@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_movie_detail">Movie Detail</string>
     <string name="movie_release_date">Release Date</string>
-    <string name="movie_populairty">User Rating : </string>
+    <string name="movie_popularity">User Rating : </string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Sort Order Settings START -->

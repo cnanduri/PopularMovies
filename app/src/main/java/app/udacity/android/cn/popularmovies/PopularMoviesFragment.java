@@ -49,7 +49,7 @@ public class PopularMoviesFragment extends Fragment {
             mMovies = new ArrayList<Movie>();
         }
         else {
-            Log.d(LOG_TAG, "Retrieving movies list from savedInstancesStaate...");
+            Log.d(LOG_TAG, "Retrieving movies list from savedInstancesState...");
             mMovies = savedInstanceState.getParcelableArrayList(getString(R.string.movies));
         }
     }
@@ -134,7 +134,7 @@ public class PopularMoviesFragment extends Fragment {
                 movies = parseMovieData(moviesJsonStr);
             } catch (JSONException e) {
                 Log.e(LOG_TAG, "Error " + e.getMessage(), e);
-                // If the code didn't successfully get the movie data, there's no point in attemping
+                // If the code didn't successfully get the movie data, there's no point in attempting
                 // to parse it.
                 return null;
             }
@@ -147,7 +147,7 @@ public class PopularMoviesFragment extends Fragment {
                 mMovieAdapter.clear();
 
                 for (Movie movie : movies) {
-                    mMovies.add(movie);//To accomodate for older versions of Android, otherwise use addAll
+                    mMovies.add(movie);//To accommodate for older versions of Android, otherwise use addAll
                 }
 
             }
