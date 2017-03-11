@@ -18,8 +18,24 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:label="@string/filter_title_view_movies">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/movies” -->
+                <data
+                    android:host="www.example.com"
+                    android:pathPrefix="/@string/movies"
+                    android:scheme="http" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- Accepts URIs that begin with "example://movies” -->
+                <data
+                    android:host="@string/movies"
+                    android:scheme="example" />
+
             </intent-filter>
         </activity>
         <activity

@@ -103,5 +103,7 @@
     <!-- Content Description for Movie Image View -->
     <string name="movie_image_view_content_desc">Movie Image</string>
 
+    <!-- Label for intent filter that will let the App browsable-->
+    <string name="filter_title_view_movies">View Movies</string>
 
 </resources>
