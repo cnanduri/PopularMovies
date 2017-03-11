@@ -47,9 +47,9 @@
 
             <ImageView
                 android:id="@+id/movie_image"
-                android:contentDescription="@string/movie_image_view_content_desc"
                 android:layout_width="@dimen/movie_image_width"
                 android:layout_height="@dimen/movie_image_height"
+                android:contentDescription="@string/movie_image_view_content_desc"
                 android:scaleType="centerCrop" />
 
             <TableLayout
@@ -85,8 +85,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/movie_image_release_date_layout"
-            android:paddingTop="@dimen/movie_detail_padding"
+            android:paddingEnd="@dimen/movie_detail_padding"
+            android:paddingLeft="@dimen/movie_detail_padding"
             android:paddingRight="@dimen/movie_detail_padding"
+            android:paddingTop="@dimen/movie_detail_padding"
             android:text="@string/movie_populairty"
             android:textAlignment="center"
             android:textStyle="bold" />
@@ -96,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/movie_image_release_date_layout"
+            android:layout_toEndOf="@+id/movie_vote_average_label"
             android:layout_toRightOf="@+id/movie_vote_average_label"
             android:paddingTop="@dimen/movie_detail_padding" />
 
