@@ -1,4 +1,4 @@
-package app.udacity.android.cn.popularmovies.bundler;
+package app.udacity.android.cn.popularmovies.util.bundler;
 
 import android.os.Bundle;
 

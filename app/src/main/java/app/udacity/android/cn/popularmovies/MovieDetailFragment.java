@@ -49,7 +49,7 @@ public class MovieDetailFragment extends Fragment {
 
         String originalTitle = mMovie.getOriginalTitle();
         String overview = mMovie.getOverview();
-        int voteAvg = mMovie.getVoteAvg();
+        float voteAvg = mMovie.getVoteAvg();
         String releaseDtStr = mMovie.getReleaseDt();
 
         //Deprecated, but needed to support older versions

@@ -1,5 +1,7 @@
 package app.udacity.android.cn.popularmovies;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.parceler.ParcelConstructor;
 
@@ -20,15 +22,24 @@ import org.parceler.ParcelConstructor;
 @SuppressWarnings("CanBeFinal")
 public class Movie {
 
+    @SerializedName("poster_path")
     String posterPath;
+
+    @SerializedName("original_title")
     String originalTitle;
+
+    @SerializedName("overview")
     String overview;
+
+    @SerializedName("release_date")
     String releaseDt;
-    int voteAvg;
+
+    @SerializedName("vote_average")
+    float voteAvg;
 
     @ParcelConstructor
     public Movie(String posterPath, String originalTitle,
-                 String overview, String releaseDt, int voteAvg) {
+                 String overview, String releaseDt, float voteAvg) {
         this.posterPath = posterPath;
         this.originalTitle = originalTitle;
         this.overview = overview;
@@ -52,7 +63,7 @@ public class Movie {
         return releaseDt;
     }
 
-    public int getVoteAvg() {
+    public float getVoteAvg() {
         return voteAvg;
     }
 
