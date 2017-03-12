@@ -20,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import app.udacity.android.cn.popularmovies.util.NetworkCheck;
+
 /**
  * A placeholder fragment containing a simple view.
  */

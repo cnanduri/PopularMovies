@@ -1,4 +1,4 @@
-package app.udacity.android.cn.popularmovies;
+package app.udacity.android.cn.popularmovies.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

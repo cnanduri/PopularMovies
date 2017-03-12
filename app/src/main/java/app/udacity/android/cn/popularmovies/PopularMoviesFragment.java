@@ -29,16 +29,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.udacity.android.cn.popularmovies.bundler.MoviesBundler;
+import app.udacity.android.cn.popularmovies.util.NetworkCheck;
+import icepick.Icepick;
+import icepick.State;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class PopularMoviesFragment extends Fragment {
 
     private final String LOG_TAG = PopularMoviesFragment.class.getSimpleName();
-
+    @State(MoviesBundler.class)
+    ArrayList<Movie> mMovies = new ArrayList<>();
     private MovieAdapter mMovieAdapter;
-
-    private ArrayList<Movie> mMovies;
 
     public PopularMoviesFragment() {
     }
@@ -46,19 +50,13 @@ public class PopularMoviesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.movies))) {
-            mMovies = new ArrayList<>();
-        }
-        else {
-            Log.d(LOG_TAG, "Retrieving movies list from savedInstancesState...");
-            mMovies = Parcels.unwrap(savedInstanceState.getParcelable(getString(R.string.movies)));
-        }
+        Icepick.restoreInstanceState(this, savedInstanceState);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(getString(R.string.movies), Parcels.wrap(mMovies));
         super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 
     @Override
