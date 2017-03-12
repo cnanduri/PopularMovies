@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def icepickVersion = '3.2.0'
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -46,8 +48,14 @@ dependencies {
     //Parcel Refer http://parceler.org/
     compile 'org.parceler:parceler-api:1.1.6'
     annotationProcessor 'org.parceler:parceler:1.1.6'
+
+    // Icepick : https://mvnrepository.com/artifact/frankiesardo/icepick
+    compile "frankiesardo:icepick:$icepickVersion"
+    provided "frankiesardo:icepick-processor:$icepickVersion"
+
 }
 
 repositories {
     mavenCentral()
+    maven { url "https://clojars.org/repo/" }
 }
