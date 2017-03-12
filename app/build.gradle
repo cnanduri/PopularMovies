@@ -61,6 +61,10 @@ dependencies {
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
     compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.6.0'
 
+    //Roboelectric for unit testing Android app.No Device or Emulator required for testing
+    testCompile 'org.robolectric:robolectric:3.3.1'
+    testCompile "org.robolectric:shadows-support-v4:3.0"
+
 }
 
 repositories {
