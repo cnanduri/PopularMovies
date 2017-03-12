@@ -53,6 +53,14 @@ dependencies {
     compile "frankiesardo:icepick:$icepickVersion"
     provided "frankiesardo:icepick-processor:$icepickVersion"
 
+    //Retrofit 2
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
+    compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.6.0'
+
 }
 
 repositories {
