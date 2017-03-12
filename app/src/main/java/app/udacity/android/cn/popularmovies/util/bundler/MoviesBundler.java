@@ -14,7 +14,7 @@ import icepick.Bundler;
  * Bundler implementation for Icepick library to save instances of ArrayList<Movie>
  * From version Icepick 3.2.0, you can supply a class parameter to the State annotation.
  * This class should implement the Bundler interface and you can use it to provide
- * custom serialisation and deserialisation for your types.
+ * custom serialization and deserialization for your types.
  */
 
 public class MoviesBundler implements Bundler<ArrayList<Movie>> {

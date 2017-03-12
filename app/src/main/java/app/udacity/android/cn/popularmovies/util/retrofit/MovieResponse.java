@@ -12,12 +12,15 @@ import app.udacity.android.cn.popularmovies.model.Movie;
 
 /**
  * Created by Chaitanya on 3/12/2017.
+ * JSON parsed object
  */
 
+@SuppressWarnings("WeakerAccess")
 public class MovieResponse {
 
-    public static final String DATE_FORMAT = "yyyy-MM-dd";
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
 
+    @SuppressWarnings("CanBeFinal")
     @SerializedName("results")
     List<Movie> movies;
 
@@ -25,13 +28,13 @@ public class MovieResponse {
         movies = new ArrayList<>();
     }
 
+    @SuppressWarnings("unused")
     public static MovieResponse parseJSON(String jsonResponse) {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         gsonBuilder.setDateFormat(DATE_FORMAT);
         Gson gson = gsonBuilder.create();
-        MovieResponse response = gson.fromJson(jsonResponse, MovieResponse.class);
-        return response;
+        return gson.fromJson(jsonResponse, MovieResponse.class);
     }
 
     public List<Movie> getMovies() {

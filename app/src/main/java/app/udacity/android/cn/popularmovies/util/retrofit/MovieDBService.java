@@ -6,6 +6,7 @@ import retrofit2.http.Path;
 
 /**
  * Created by Chaitanya on 3/12/2017.
+ * Defines contract for fetching movies
  */
 
 public interface MovieDBService {

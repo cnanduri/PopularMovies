@@ -42,6 +42,7 @@ public class PopularMoviesFragment extends Fragment {
 
     private final String LOG_TAG = PopularMoviesFragment.class.getSimpleName();
 
+    @SuppressWarnings({"CanBeFinal", "WeakerAccess"})
     @State(MoviesBundler.class)
     ArrayList<Movie> mMovies = new ArrayList<>();
 
@@ -103,7 +104,7 @@ public class PopularMoviesFragment extends Fragment {
         //Retrieve Shared Preferences to get the user set location from settings
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getContext());
         String sortOrder = getString(R.string.pref_sort_order_value_popular);
-        String path = null;
+        String path;
         if (settings != null) {
             sortOrder = settings.getString(getString(R.string.pref_sort_order_key), sortOrder);
         }
@@ -117,7 +118,7 @@ public class PopularMoviesFragment extends Fragment {
         fetchMovies(path);
     }
 
-    public void fetchMovies(String sortBy) {
+    private void fetchMovies(String sortBy) {
         MovieDBService service = MovieServiceGenerator.createService(MovieDBService.class);
         Call<MovieResponse> call = service.fetchMovies(sortBy);
         call.enqueue(new Callback<MovieResponse>() {

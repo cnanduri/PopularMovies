@@ -14,15 +14,14 @@ import okhttp3.Response;
  * calls to Movie DB.
  */
 
-public class MovieDBRequestInterceptor implements Interceptor {
-
-    final String API_KEY_PARAM = "api_key";
+class MovieDBRequestInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
         HttpUrl originalHttpUrl = original.url();
 
+        final String API_KEY_PARAM = "api_key";
         HttpUrl url = originalHttpUrl.newBuilder()
                 .addQueryParameter(API_KEY_PARAM, BuildConfig.THE_MOVIE_DB_API_KEY)
                 .build();

@@ -11,6 +11,7 @@ import retrofit2.Response;
 
 /**
  * Created by Chaitanya on 3/12/2017.
+ * Parse the response and constructs an APIError object
  */
 
 public class ErrorUtils {
