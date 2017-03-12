@@ -6,7 +6,7 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-import app.udacity.android.cn.popularmovies.Movie;
+import app.udacity.android.cn.popularmovies.model.Movie;
 import icepick.Bundler;
 
 /**

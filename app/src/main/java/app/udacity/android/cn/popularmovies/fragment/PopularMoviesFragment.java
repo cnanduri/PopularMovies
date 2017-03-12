@@ -1,4 +1,4 @@
-package app.udacity.android.cn.popularmovies;
+package app.udacity.android.cn.popularmovies.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +18,11 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.udacity.android.cn.popularmovies.R;
+import app.udacity.android.cn.popularmovies.activity.MovieDetailActivity;
+import app.udacity.android.cn.popularmovies.adapter.MovieAdapter;
 import app.udacity.android.cn.popularmovies.model.APIError;
+import app.udacity.android.cn.popularmovies.model.Movie;
 import app.udacity.android.cn.popularmovies.util.ErrorUtils;
 import app.udacity.android.cn.popularmovies.util.NetworkCheck;
 import app.udacity.android.cn.popularmovies.util.bundler.MoviesBundler;

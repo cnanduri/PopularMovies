@@ -1,4 +1,4 @@
-package app.udacity.android.cn.popularmovies;
+package app.udacity.android.cn.popularmovies.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import app.udacity.android.cn.popularmovies.R;
+import app.udacity.android.cn.popularmovies.model.Movie;
 
 /**
  * Created by Chaitanya on 3/9/2017.
@@ -48,7 +51,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         if (movie != null) {
             String path = context.getString(R.string.the_movie_db_base_url) +
                     context.getString(R.string.movie_image_size) +
-                    movie.getPosterPath();
+                    movie.posterPath;
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
             Picasso.with(getContext())
@@ -56,7 +59,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                     .into(imageView);
 
             TextView textView = (TextView) convertView.findViewById(R.id.movie_title);
-            textView.setText(movie.getOriginalTitle());
+            textView.setText(movie.originalTitle);
         }
 
         return convertView;

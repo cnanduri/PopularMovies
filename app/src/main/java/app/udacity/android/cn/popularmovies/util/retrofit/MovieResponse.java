@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.udacity.android.cn.popularmovies.Movie;
+import app.udacity.android.cn.popularmovies.model.Movie;
 
 /**
  * Created by Chaitanya on 3/12/2017.

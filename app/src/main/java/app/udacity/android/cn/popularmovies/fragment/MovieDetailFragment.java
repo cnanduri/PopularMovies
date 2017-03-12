@@ -1,4 +1,4 @@
-package app.udacity.android.cn.popularmovies;
+package app.udacity.android.cn.popularmovies.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import app.udacity.android.cn.popularmovies.R;
+import app.udacity.android.cn.popularmovies.model.Movie;
 import app.udacity.android.cn.popularmovies.util.NetworkCheck;
 
 /**
@@ -47,10 +49,10 @@ public class MovieDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
 
-        String originalTitle = mMovie.getOriginalTitle();
-        String overview = mMovie.getOverview();
-        float voteAvg = mMovie.getVoteAvg();
-        String releaseDtStr = mMovie.getReleaseDt();
+        String originalTitle = mMovie.originalTitle;
+        String overview = mMovie.overview;
+        float voteAvg = mMovie.voteAvg;
+        String releaseDtStr = mMovie.releaseDt;
 
         //Deprecated, but needed to support older versions
         @SuppressWarnings("deprecation") Locale locale = getResources().getConfiguration().locale;
@@ -80,7 +82,7 @@ public class MovieDetailFragment extends Fragment {
             ImageView imageView = (ImageView) rootView.findViewById(R.id.movie_image);
             String path = getString(R.string.the_movie_db_base_url) +
                     getString(R.string.movie_image_size) +
-                    mMovie.getPosterPath();
+                    mMovie.posterPath;
             Picasso.with(getActivity())
                     .load(path)
                     .into(imageView);
