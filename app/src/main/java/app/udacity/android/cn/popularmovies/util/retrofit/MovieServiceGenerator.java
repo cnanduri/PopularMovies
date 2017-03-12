@@ -1,5 +1,6 @@
 package app.udacity.android.cn.popularmovies.util.retrofit;
 
+import app.udacity.android.cn.popularmovies.BuildConfig;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -17,8 +18,7 @@ public final class MovieServiceGenerator {
     private static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY);
     private static OkHttpClient.Builder httpClient =
-            new OkHttpClient.Builder().addInterceptor(requestInterceptor)
-                    .addInterceptor(loggingInterceptor);
+            new OkHttpClient.Builder().addInterceptor(requestInterceptor);
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -30,11 +30,19 @@ public final class MovieServiceGenerator {
 
     }
 
+    public static Retrofit retrofit() {
+        return retrofit;
+    }
+
     public static <S> S createService(
             Class<S> serviceClass) {
 
         addInterceptors(requestInterceptor);
-        addInterceptors(loggingInterceptor); //Add logging at the end
+
+        //Log for Development purpose only
+        if (BuildConfig.DEBUG) {
+            addInterceptors(loggingInterceptor); //Add logging at the end
+        }
 
         return retrofit.create(serviceClass);
     }

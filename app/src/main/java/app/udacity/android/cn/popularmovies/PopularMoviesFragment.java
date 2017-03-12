@@ -18,6 +18,8 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.udacity.android.cn.popularmovies.model.APIError;
+import app.udacity.android.cn.popularmovies.util.ErrorUtils;
 import app.udacity.android.cn.popularmovies.util.NetworkCheck;
 import app.udacity.android.cn.popularmovies.util.bundler.MoviesBundler;
 import app.udacity.android.cn.popularmovies.util.retrofit.MovieDBService;
@@ -117,13 +119,22 @@ public class PopularMoviesFragment extends Fragment {
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                MovieResponse movieResponse = response.body();
-                List<Movie> movies = movieResponse.getMovies();
-                if (movies != null) {
-                    mMovieAdapter.clear();
-                    for (Movie movie : movies) {
-                        mMovies.add(movie);//To accommodate for older versions of Android, otherwise use addAll
+                if (response.isSuccessful()) {
+                    MovieResponse movieResponse = response.body();
+                    List<Movie> movies = movieResponse.getMovies();
+                    if (movies != null) {
+                        mMovieAdapter.clear();
+                        for (Movie movie : movies) {
+                            mMovies.add(movie);//To accommodate for older versions of Android, otherwise use addAll
+                        }
                     }
+                } else {
+                    // parse the response body …
+                    APIError error = ErrorUtils.parseError(response);
+                    // … and use it to show error information
+
+                    // … or just log the issue like we’re doing :)
+                    Log.e("error message", error.message());
                 }
             }
 
