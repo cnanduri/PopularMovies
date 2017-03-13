@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import org.androidannotations.annotations.EFragment;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ import retrofit2.Response;
 /**
  * A placeholder fragment containing a simple view.
  */
+@EFragment
 public class PopularMoviesFragment extends Fragment {
 
     private final String LOG_TAG = PopularMoviesFragment.class.getSimpleName();

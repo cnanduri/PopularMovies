@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.androidannotations.annotations.EFragment;
 import org.parceler.Parcels;
 
 import java.text.ParseException;
@@ -27,6 +28,7 @@ import app.udacity.android.cn.popularmovies.util.NetworkCheck;
 /**
  * A placeholder fragment containing a simple view.
  */
+@EFragment
 public class MovieDetailFragment extends Fragment {
 
     private static final String LOG_TAG = MovieDetailFragment.class.getSimpleName();
