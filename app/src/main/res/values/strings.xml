@@ -15,10 +15,6 @@
     <string name="pref_sort_order_value_highest_rated" translatable="false">vote_average.desc</string>
     <!-- Strings related to Sort Order Settings END -->
 
-
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
     <!-- Example settings for Notifications -->
     <string name="pref_ringtone_silent">Silent</string>
 
