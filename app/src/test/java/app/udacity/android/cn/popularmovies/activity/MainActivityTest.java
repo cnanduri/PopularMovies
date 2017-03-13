@@ -15,6 +15,7 @@ import app.udacity.android.cn.popularmovies.BuildConfig;
  * Created by Chaitanya on 3/12/2017.
  */
 
+@SuppressWarnings("ALL")
 @Config(constants = BuildConfig.class)
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {

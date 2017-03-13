@@ -1,5 +1,6 @@
 package app.udacity.android.cn.popularmovies;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
@@ -13,6 +14,7 @@ import org.androidannotations.annotations.EApplication;
  * Added code for using LeakCanary to detect memory leaks in the app.
  */
 
+@SuppressLint("Registered")
 @EApplication
 public class PopularMoviesApplication extends Application {
 

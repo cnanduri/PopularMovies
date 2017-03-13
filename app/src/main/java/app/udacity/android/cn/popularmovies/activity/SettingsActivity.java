@@ -1,6 +1,7 @@
 package app.udacity.android.cn.popularmovies.activity;
 
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ import app.udacity.android.cn.popularmovies.R;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
+@SuppressLint("Registered")
 @EActivity
 public class SettingsActivity extends AppCompatPreferenceActivity {
     /**

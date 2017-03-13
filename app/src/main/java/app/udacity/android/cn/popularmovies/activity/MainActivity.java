@@ -1,5 +1,6 @@
 package app.udacity.android.cn.popularmovies.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +13,11 @@ import org.androidannotations.annotations.ViewById;
 
 import app.udacity.android.cn.popularmovies.R;
 
+@SuppressLint("Registered")
 @EActivity
 public class MainActivity extends AppCompatActivity {
 
+    @SuppressWarnings({"WeakerAccess", "CanBeFinal"})
     @ViewById(R.id.toolbar)
     Toolbar toolbar;
 
