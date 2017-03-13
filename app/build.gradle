@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 def icepickVersion = '3.2.0'
+def AAVersion = '4.2.0'
 
 android {
     compileSdkVersion 25
@@ -64,9 +65,8 @@ dependencies {
     testCompile 'org.robolectric:robolectric:3.3.1'
     testCompile "org.robolectric:shadows-support-v4:3.0"
 
-}
+    // Android Annotations
+    annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
 
-repositories {
-    mavenCentral()
-    maven { url "https://clojars.org/repo/" }
 }

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
 
+import org.androidannotations.annotations.EApplication;
+
 /**
  * Created by Chaitanya on 3/11/2017.
  * Application class defined for Popular Movies App.
@@ -11,6 +13,7 @@ import com.squareup.leakcanary.LeakCanary;
  * Added code for using LeakCanary to detect memory leaks in the app.
  */
 
+@EApplication
 public class PopularMoviesApplication extends Application {
 
     @Override

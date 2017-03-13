@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.udacity.android.cn.popularmovies.R;
-import app.udacity.android.cn.popularmovies.activity.MovieDetailActivity;
+import app.udacity.android.cn.popularmovies.activity.MovieDetailActivity_;
 import app.udacity.android.cn.popularmovies.adapter.MovieAdapter;
 import app.udacity.android.cn.popularmovies.model.APIError;
 import app.udacity.android.cn.popularmovies.model.Movie;
@@ -90,7 +90,7 @@ public class PopularMoviesFragment extends Fragment {
                 Movie movie = mMovieAdapter.getItem(position);
                 if (movie != null) {
                     Log.d(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
-                    Intent intent = new Intent(getActivity(), MovieDetailActivity.class)
+                    Intent intent = new Intent(getActivity(), MovieDetailActivity_.class)
                             .putExtra(getString(R.string.movie), Parcels.wrap(movie)); //Pass the Movie object at the position clicked
                     startActivity(intent);
                 }
