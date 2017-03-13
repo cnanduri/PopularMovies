@@ -51,7 +51,7 @@
                 android:value="app.udacity.android.cn.popularmovies.activity.MainActivity_" />
         </activity>
         <activity
-            android:name=".activity.SettingsActivity"
+            android:name=".activity.SettingsActivity_"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".activity.MainActivity_"
             tools:ignore="UnusedAttribute">

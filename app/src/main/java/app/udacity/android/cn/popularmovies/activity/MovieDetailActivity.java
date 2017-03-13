@@ -40,7 +40,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
+            Intent intent = new Intent(this, SettingsActivity_.class);
             startActivity(intent);
             return true;
         }

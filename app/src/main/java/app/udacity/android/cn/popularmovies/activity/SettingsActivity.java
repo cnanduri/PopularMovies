@@ -21,6 +21,8 @@ import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
+import org.androidannotations.annotations.EActivity;
+
 import java.util.List;
 
 import app.udacity.android.cn.popularmovies.R;
@@ -36,6 +38,7 @@ import app.udacity.android.cn.popularmovies.R;
  * href="http://developer.android.com/guide/topics/ui/settings.html">Settings
  * API Guide</a> for more information on developing a Settings UI.
  */
+@EActivity
 public class SettingsActivity extends AppCompatPreferenceActivity {
     /**
      * A preference value change listener that updates the preference's summary
@@ -199,7 +202,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                startActivity(new Intent(getActivity(), SettingsActivity_.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);
@@ -229,7 +232,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                startActivity(new Intent(getActivity(), SettingsActivity_.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);
@@ -259,7 +262,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                startActivity(new Intent(getActivity(), SettingsActivity_.class));
                 return true;
             }
             return super.onOptionsItemSelected(item);
