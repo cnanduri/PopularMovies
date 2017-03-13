@@ -31,16 +31,22 @@ import app.udacity.android.cn.popularmovies.util.NetworkCheck;
 public class MovieDetailFragment extends Fragment {
 
     private static final String LOG_TAG = MovieDetailFragment.class.getSimpleName();
+
     @ViewById(R.id.movie_original_title)
     TextView originalTitleTextView;
+
     @ViewById(R.id.movie_overview)
     TextView overviewTextView;
+
     @ViewById(R.id.movie_vote_average)
     TextView voteAvgTextView;
+
     @ViewById(R.id.movie_release_date)
     TextView releaseDtTextView;
+
     @ViewById(R.id.movie_image)
     ImageView imageView;
+
     private Movie mMovie;
 
     public MovieDetailFragment() {

@@ -7,12 +7,11 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ViewById;
 import org.parceler.Parcels;
 
@@ -47,8 +46,10 @@ public class PopularMoviesFragment extends Fragment {
     @SuppressWarnings({"CanBeFinal", "WeakerAccess"})
     @State(MoviesBundler.class)
     ArrayList<Movie> mMovies = new ArrayList<>();
+
     @ViewById(R.id.movies_grid)
     GridView gridView;
+
     private MovieAdapter mMovieAdapter;
 
     public PopularMoviesFragment() {
@@ -81,20 +82,15 @@ public class PopularMoviesFragment extends Fragment {
         mMovieAdapter = new MovieAdapter(getActivity(), mMovies);
         // Get a reference to the GridView, and attach this adapter to it.
         gridView.setAdapter(mMovieAdapter);
+    }
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Retrieve movie object at the position clicked
-                Movie movie = mMovieAdapter.getItem(position);
-                if (movie != null) {
-                    Log.d(LOG_TAG, "Movie at position : " + position + " is :" + movie.toString());
-                    Intent intent = new Intent(getActivity(), MovieDetailActivity_.class)
-                            .putExtra(getString(R.string.movie), Parcels.wrap(movie)); //Pass the Movie object at the position clicked
-                    startActivity(intent);
-                }
-            }
-        });
+    @ItemClick(R.id.movies_grid)
+    void onMovieClick(Movie movie) {
+        if (movie != null) {
+            Intent intent = new Intent(getActivity(), MovieDetailActivity_.class)
+                    .putExtra(getString(R.string.movie), Parcels.wrap(movie)); //Pass the Movie object at the position clicked
+            startActivity(intent);
+        }
     }
 
     private void updateMovies() {
