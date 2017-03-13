@@ -7,13 +7,13 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ import retrofit2.Response;
 /**
  * A placeholder fragment containing a simple view.
  */
-@EFragment
+@EFragment(R.layout.fragment_main)
 public class PopularMoviesFragment extends Fragment {
 
     private final String LOG_TAG = PopularMoviesFragment.class.getSimpleName();
@@ -47,7 +47,8 @@ public class PopularMoviesFragment extends Fragment {
     @SuppressWarnings({"CanBeFinal", "WeakerAccess"})
     @State(MoviesBundler.class)
     ArrayList<Movie> mMovies = new ArrayList<>();
-
+    @ViewById(R.id.movies_grid)
+    GridView gridView;
     private MovieAdapter mMovieAdapter;
 
     public PopularMoviesFragment() {
@@ -75,14 +76,10 @@ public class PopularMoviesFragment extends Fragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
+    @AfterViews
+    void configureGridView() {
         mMovieAdapter = new MovieAdapter(getActivity(), mMovies);
         // Get a reference to the GridView, and attach this adapter to it.
-        GridView gridView = (GridView) rootView.findViewById(R.id.movies_grid);
         gridView.setAdapter(mMovieAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,8 +95,6 @@ public class PopularMoviesFragment extends Fragment {
                 }
             }
         });
-
-        return rootView;
     }
 
     private void updateMovies() {
